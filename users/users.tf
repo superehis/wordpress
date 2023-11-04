@@ -31,8 +31,7 @@ resource "aws_iam_group_membership" "db_team" {
   users = [aws_iam_user.eks_user[0].name]
   group = aws_iam_group.eks_developer.name
 }
-
-# EKS admin's group
+ #EKS admin's group
 resource "aws_iam_group" "eks_masters" {
   name = "Masters"
 }
@@ -45,7 +44,8 @@ resource "aws_iam_group_policy" "masters_policy" {
 
 resource "aws_iam_group_membership" "masters_team" {
   name  = "masters-group-membership"
-  users = [aws_iam_user.eks_user[1].name, aws_iam_user.eks_user[2].name]
+  users = [aws_iam_user.eks_user[0].name, aws_iam_user.eks_user[1
+  ].name]
   group = aws_iam_group.eks_masters.name
 }
 
@@ -73,4 +73,8 @@ resource "aws_iam_role_policy_attachment" "admin_policy" {
 resource "aws_iam_policy" "eks_admin" {
   name   = "eks_masters"
   policy = data.aws_iam_policy_document.masters.json
+}
+
+data "aws_iam_policy_document" "masters" {
+  // ...
 }
