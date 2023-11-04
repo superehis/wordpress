@@ -6,8 +6,8 @@ Creating and adding users to EKS:
 
 1. Create a clusterrole and clussterrolebinding
 
-
-- deploy, cm, pods, secrets, services = resources -verbs get, List, watch create
+-  resources = pods, services
+- verbs = get, List, watch create
 
 2. Go to aws IAM, create a role and policies to be attached to a group.
 
